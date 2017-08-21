@@ -1,0 +1,23 @@
+{
+  "name": "randock/model",
+  "description": "Randock Model",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Randock\\Model\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "7.1"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "symfony/form": "^3.3",
+    "randock/event": "*"
+  }
+}
