@@ -8,6 +8,11 @@
       "Randock\\Model\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Randock\\Model\\": "tests/"
+    }
+  },
   "config": {
     "sort-packages": true,
     "platform": {
@@ -20,5 +25,9 @@
     "doctrine/common": "^2.8",
     "randock/event": "dev-develop",
     "symfony/form": "^3.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.0",
+    "randock/value-object": "dev-develop"
   }
 }
