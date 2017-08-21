@@ -17,7 +17,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "symfony/form": "^3.3",
-    "randock/event": "*"
+    "doctrine/common": "^2.8",
+    "randock/event": "dev-develop",
+    "symfony/form": "^3.3"
   }
 }
