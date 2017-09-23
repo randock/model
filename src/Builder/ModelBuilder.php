@@ -59,7 +59,13 @@ class ModelBuilder
                         // create an empty mock
                         $class = $classes[$param->getClass()->getName()];
                         $reflection = new \ReflectionClass($class);
-                        $parameters[$param->getName()] = $reflection->newInstanceWithoutConstructor();
+
+                        // has constructor arguments?
+                        if ($reflection->getConstructor()->getNumberOfRequiredParameters() === 0) {
+                            $parameters[$param->getName()] = $reflection->newInstance();
+                        } else {
+                            $parameters[$param->getName()] = $reflection->newInstanceWithoutConstructor();
+                        }
                     }
                 }
             }
