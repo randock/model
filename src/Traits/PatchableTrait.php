@@ -3,6 +3,7 @@
 
 namespace Randock\Model\Traits;
 
+use Doctrine\Common\Collections\Collection;
 use Randock\Model\Definition\PatchableInterface;
 use Randock\Model\Exception\NotPatchableException;
 
