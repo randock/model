@@ -38,7 +38,8 @@ class ModelBuilder
                     $parameters[$param->getName()] = $data;
                 } else {
                     // check if the object/var was set via config
-                    if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {                        $object = $form->getConfig()->getOption($param->getName());
+                    if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {
+                        $object = $form->getConfig()->getOption($param->getName());
                         $parameters[$param->getName()] = $object;
                     } elseif ($param->isDefaultValueAvailable()) {
                         $parameters[$param->getName()] = $param->getDefaultValue();
