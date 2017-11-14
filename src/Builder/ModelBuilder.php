@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Randock\Model\Builder;
 
+use Symfony\Component\Form\Exception\OutOfBoundsException;
 use Symfony\Component\Form\FormInterface;
 
 class ModelBuilder
@@ -24,9 +25,19 @@ class ModelBuilder
 
             /** @var \ReflectionParameter $param */
             foreach ($constructorParameters as $param) {
+
+                $data = null;
+                if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {
+                    $data = $form->getConfig()->getOption($param->getName());
+                }
+
+                // build in type? cast and/or ger from form
                 if ($param->getType()->isBuiltin()) {
+
                     // grab data from form
-                    $data = $form->get($param->getName())->getData();
+                    if ($form->has($param->getName())) {
+                        $data = $form->get($param->getName())->getData();
+                    }
 
                     // if null is not allowed or data has been set, then
                     // cast it to the right type
@@ -38,9 +49,8 @@ class ModelBuilder
                     $parameters[$param->getName()] = $data;
                 } else {
                     // check if the object/var was set via config
-                    if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {
-                        $object = $form->getConfig()->getOption($param->getName());
-                        $parameters[$param->getName()] = $object;
+                    if ($data !== null) {
+                        $parameters[$param->getName()] = $data;
                     } elseif ($param->isDefaultValueAvailable()) {
                         $parameters[$param->getName()] = $param->getDefaultValue();
                     } else {
