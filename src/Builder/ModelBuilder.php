@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Randock\Model\Builder;
 
+use Symfony\Component\Form\Exception\OutOfBoundsException;
 use Symfony\Component\Form\FormInterface;
 
 class ModelBuilder
@@ -34,7 +35,9 @@ class ModelBuilder
                 if ($param->getType()->isBuiltin()) {
 
                     // grab data from form
-                    $data = $form->get($param->getName())->getData() ?? $data;
+                    if ($form->has($param->getName())) {
+                        $data = $form->get($param->getName())->getData();
+                    }
 
                     // if null is not allowed or data has been set, then
                     // cast it to the right type
