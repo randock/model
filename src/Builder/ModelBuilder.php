@@ -24,9 +24,17 @@ class ModelBuilder
 
             /** @var \ReflectionParameter $param */
             foreach ($constructorParameters as $param) {
+
+                $data = null;
+                if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {
+                    $data = $form->getConfig()->getOption($param->getName());
+                }
+
+                // build in type? cast and/or ger from form
                 if ($param->getType()->isBuiltin()) {
+
                     // grab data from form
-                    $data = $form->get($param->getName())->getData();
+                    $data = $form->get($param->getName())->getData() ?? $data;
 
                     // if null is not allowed or data has been set, then
                     // cast it to the right type
@@ -38,9 +46,8 @@ class ModelBuilder
                     $parameters[$param->getName()] = $data;
                 } else {
                     // check if the object/var was set via config
-                    if ($form->getConfig()->hasOption($param->getName()) && $form->getConfig()->getOption($param->getName()) !== null) {
-                        $object = $form->getConfig()->getOption($param->getName());
-                        $parameters[$param->getName()] = $object;
+                    if ($data !== null) {
+                        $parameters[$param->getName()] = $data;
                     } elseif ($param->isDefaultValueAvailable()) {
                         $parameters[$param->getName()] = $param->getDefaultValue();
                     } else {
