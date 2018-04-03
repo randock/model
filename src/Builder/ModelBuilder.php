@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Randock\Model\Builder;
 
-use Symfony\Component\Form\Exception\OutOfBoundsException;
 use Symfony\Component\Form\FormInterface;
 
 class ModelBuilder
