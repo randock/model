@@ -2,3 +2,4 @@
 vendor
 docker-compose.yml
 phpunit.xml
+.phpunit.result.cache

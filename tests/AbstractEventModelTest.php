@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Randock\Model;
 
+use PHPUnit\Framework\TestCase;
 use Randock\ValueObject\DynamicObjectStorage;
 use Randock\Model\Exception\NotPatchableException;
 use Tests\Randock\Model\Mocks\OrderMock;
@@ -13,7 +14,7 @@ use Tests\Randock\Model\Mocks\TravelerMock;
 /**
  * Class AbstractEventModelTests.
  */
-class AbstractEventModelTest extends \PHPUnit_Framework_TestCase
+class AbstractEventModelTest extends TestCase
 {
     public function testSimplePatch()
     {
