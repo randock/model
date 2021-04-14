@@ -22,7 +22,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "doctrine/common": "^2.8",
+    "doctrine/common": "^2.8|^3.0",
     "randock/event": "dev-develop",
     "symfony/form": "^3.2|^4.0|^5.0"
   },
